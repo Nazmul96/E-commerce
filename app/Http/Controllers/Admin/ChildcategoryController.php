@@ -48,7 +48,6 @@ class ChildcategoryController extends Controller
             'childcategory_name' => 'required|unique:childcategories|max:55',           
         ]);
 		$cat_id=DB::table('subcategories')->where('id',$req->subcategory_id)->first();
-
 		$data=array();
 		$data['category_id']=$cat_id->category_id;
 		$data['subcategory_id']=$req->subcategory_id;
@@ -61,7 +60,7 @@ class ChildcategoryController extends Controller
             'message'=>'Child-category Inserted!',
             'alert-type'=>'success',
         );
-        return redirect()->back()->with($notification); 
+        return redirect()->back()->with($notification);
 	}
 
 	//childcategory delete.....
@@ -73,4 +72,31 @@ class ChildcategoryController extends Controller
         );
         return redirect()->back()->with($notification); 
 	}
+	//childcategory edit.....
+	public function edit($id)
+    {
+        $category=DB::table('categories')->get();
+        $data=DB::table('childcategories')->where('id',$id)->first();
+        return view('admin.category.childcategory.edit',compact('category','data'));
+    }
+	//childcategory update.....
+    public function update(Request $req,$id)
+    {    
+		$cat_id=DB::table('subcategories')->where('id',$req->subcategory_id)->first();
+		$data=array();
+		$data['category_id']=$cat_id->category_id;
+		$data['subcategory_id']=$req->subcategory_id;
+		$data['childcategory_name']=$req->childcategory_name;
+		$data['childcategory_slug']=Str::slug($req->childcategory_name, '-');
+
+		DB::table('childcategories')->where('id',$id)->Update($data);
+
+		$notification=array(
+            'message'=>'Child-category updated!',
+            'alert-type'=>'success',
+        );
+        return redirect()->back()->with($notification);
+       
+    }
+
 }
