@@ -72,7 +72,25 @@
             </ul>           
           </li>
           
-         
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Coupon
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('coupon_index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Coupon</p>
+                  
+                </a>
+              </li>
+             
+            </ul>           
+          </li>
          
           <li class="nav-header">PROFILE</li>
           <li class="nav-item">

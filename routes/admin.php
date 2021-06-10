@@ -8,7 +8,7 @@ Route::get('admin_login',[loginController::class,'admin_login'])->name('admin_lo
 
 Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'],function(){
     
-    Route::get('admin_home', 'AdminController@admin')->name('admin_home');
+    Route::get('admin_home','AdminController@admin')->name('admin_home');
     Route::get('admin_logout','AdminController@logout')->name('admin_logout');
 
     //Category Routes.....
@@ -45,6 +45,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 		Route::get('/delete/{id}','BrandController@delete')->name('brand_delete');
 		Route::get('/edit/{id}','BrandController@edit');
 		Route::post('/update/{id}','BrandController@update')->name('brand_update');
+	});
+    //Coupon....
+    Route::group(['prefix'=>'coupon'], function(){
+		Route::get('/','CouponController@index')->name('coupon_index');
+		Route::post('/store','CouponController@store')->name('coupon_store');
+        Route::get('/delete/{id}','CouponController@delete')->name('coupon_delete');
+        Route::get('/edit/{id}','CouponController@edit');
+        Route::post('/update/{id}','CouponController@update')->name('coupon_update');
 	});
 
 });
