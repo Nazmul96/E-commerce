@@ -10,6 +10,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
     
     Route::get('admin_home','AdminController@admin')->name('admin_home');
     Route::get('admin_logout','AdminController@logout')->name('admin_logout');
+    Route::get('admin_password_change','AdminController@passwordchange')->name('admin_password_change');
+    Route::post('admin_password_update','AdminController@passwordUpdate')->name('admin_password_update');
 
     //Category Routes.....
 
