@@ -48,6 +48,23 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 		Route::get('/edit/{id}','BrandController@edit');
 		Route::post('/update/{id}','BrandController@update')->name('brand_update');
 	});
+
+    //setting Routes..... 
+	Route::group(['prefix'=>'setting'], function(){
+        //seo setting....
+		Route::group(['prefix'=>'seo'], function(){
+            Route::get('/','SettingController@seo')->name('seo_setting');
+            Route::post('update/{id}','SettingController@seoupdate')->name('seo_setting_update');
+        });
+
+        //smtp settng......
+        Route::group(['prefix'=>'smtp'], function(){
+            Route::get('/','SettingController@smtp')->name('smtp_setting');
+            Route::post('update/{id}','SettingController@smtpupdate')->name('smtp_setting_update');
+        });
+
+	});
+
     //Coupon....
     Route::group(['prefix'=>'coupon'], function(){
 		Route::get('/','CouponController@index')->name('coupon_index');
