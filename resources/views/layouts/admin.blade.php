@@ -7,6 +7,7 @@
   
   <!-- Google Font: Source Sans Pro -->
   
+  
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -18,12 +19,16 @@
   <!-- sweet-alert and Toaster -->
   <link rel="stylesheet" type="text/css" href="{{ asset('public/backend/plugins/toastr/toastr.css') }}">
 
+   <!-- summernote -->
+   <link rel="stylesheet" href="{{asset('public/backend/plugins/summernote/summernote-bs4.min.css')}}">
+
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('public/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   
-    
+
+
 </head>
 <body >
     <div class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -106,7 +111,22 @@
 <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
+<!-- Summernote -->
+<script src="{{asset('public/backend/plugins/summernote/summernote-bs4.min.js')}}"></script>
 
+<!-- Page specific script -->
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+
+    // CodeMirror
+    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+      mode: "htmlmixed",
+      theme: "monokai"
+    });
+  })
+</script>
 
 
 <script>
@@ -195,6 +215,8 @@
     });
   });
 </script>
+
+
 
 </body>
 </html>
