@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Image; //for image intervention package
+use File;
 
 class SettingController extends Controller
 {
@@ -65,4 +67,72 @@ class SettingController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+
+
+    //website setting.......
+
+    public function website_setting(){
+        $setting=DB::table('website_settings')->first();
+        return view('admin.setting.website_setting',compact('setting'));
+    }
+
+    //website setting update.......
+
+    public function website_setting_update(Request $req,$id){
+
+        $data=array();
+        $data['currency']=$req->currency;
+        $data['phone_one']=$req->phone_one;
+        $data['phone_two']=$req->phone_two;
+        $data['main_email']=$req->main_email;
+        $data['support_email']=$req->support_email;
+        $data['address']=$req->address;
+        $data['facebook']=$req->facebook;
+        $data['twitter']=$req->twitter;
+        $data['instagram']=$req->instagram;
+        $data['linkedin']=$req->linkedin;
+        $data['youtube']=$req->youtube;
+
+        
+		$favicon=$req->favicon;
+		$logo=$req->logo;
+		if($logo){
+			if(File::exists($req->old_logo)){
+				unlink($req->old_logo);
+			}
+			$logo_name=uniqid().'.'.strtolower($logo->getClientOriginalExtension()); //unique nmae generate every time		    
+            $upload_path='public/files/setting/';
+			Image::make($logo)->resize(320,120)->save('public/files/setting/'.$logo_name); //image intervension package use
+
+		    $data['logo']=$upload_path.$logo_name;
+		}
+		else{
+			$data['logo']=$req->old_logo;
+			
+		}
+
+        if($favicon){
+			if(File::exists($req->old_favicon)){
+				unlink($req->old_favicon);
+			}
+			$favicon_name=uniqid().'.'.strtolower($favicon->getClientOriginalExtension()); //unique nmae generate every time		    
+            $upload_path='public/files/setting/';
+			Image::make($favicon)->resize(32,32)->save($upload_path.$favicon_name); //image intervension package use
+
+		    $data['favicon']=$upload_path.$favicon_name;
+		}
+		else{
+			$data['favicon']=$req->old_favicon;
+			
+		}
+        DB::table('website_settings')->where('id',$id)->update($data);
+       $notification=array(
+            'message'=>'setting updated!',
+            'alert-type'=>'success',
+        );
+
+		return redirect()->back()->with($notification);
+    }
+
+    
 }
