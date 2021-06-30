@@ -40,13 +40,22 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::post('/update/{id}','ChildcategoryController@update')->name('childcategory_update');
 
     });
-    //Brand Routes 
+    //Brand Routes..... 
 	Route::group(['prefix'=>'brand'], function(){
 		Route::get('/','BrandController@index')->name('brand_index');
 		Route::post('/store','BrandController@store')->name('brand_store');
 		Route::get('/delete/{id}','BrandController@delete')->name('brand_delete');
 		Route::get('/edit/{id}','BrandController@edit');
 		Route::post('/update/{id}','BrandController@update')->name('brand_update');
+	});
+
+    //Warehouse Routes.....
+    Route::group(['prefix'=>'warehouse'], function(){
+		Route::get('/','WarehouseController@index')->name('warehouse_index');
+		Route::post('/store','WarehouseController@store')->name('warehouse_store');
+		Route::get('/delete/{id}','WarehouseController@delete')->name('warehouse_delete');
+		Route::get('/edit/{id}','WarehouseController@edit');
+		Route::post('/update/{id}','WarehouseController@update')->name('warehouse_update');
 	});
 
     //setting Routes..... 
