@@ -34,13 +34,16 @@ class CouponController extends Controller
     				->make(true);		
     	}
 		
-    	return view('admin.coupon.index');
+    	return view('admin.offer.coupon.index');
     }
 
 	public function store(Request $req){
 		Coupon::insert([
-			'coupon'=>$req->coupon_code,
-			'discount'=>$req->coupon_discount,
+			'coupon_code'=>$req->coupon_code,
+			'type'=>$req->type,
+			'coupon_amount'=>$req->coupon_amount,
+			'valid_date'=>$req->valid_date,
+			'status'=>$req->status,
 		]);
 		$notification=array(
             'message'=>'Coupon Inserted!',
@@ -61,15 +64,20 @@ class CouponController extends Controller
 
 	public function edit($id){
 		$data=Coupon::find($id);
-		return view('admin.coupon.edit',compact('data'));
+		return view('admin.offer.coupon.edit',compact('data'));
 	}
 
 	public function update(Request $req,$id){
-		$coupon=Coupon::find($id);
-		$coupon->update([
-			'coupon'=>$req->coupon_code,
-			'discount'=>$req->coupon_discount,
-		]);
+		
+		$data=array();
+		$data['coupon_code']=$req->coupon_code;
+		$data['type']=$req->type;
+		$data['coupon_amount']=$req->coupon_amount;
+		$data['valid_date']=$req->valid_date;
+		$data['status']=$req->status;
+
+		DB::table('coupons')->where('id',$id)->update($data);
+
 		$notification=array(
             'message'=>'Coupon updated!',
             'alert-type'=>'success',

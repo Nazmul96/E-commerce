@@ -128,7 +128,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Coupon
+                Other
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -136,11 +136,34 @@
               <li class="nav-item">
                 <a href="{{route('coupon_index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Coupon</p>
-                  
+                  <p>Coupon</p>                  
                 </a>
               </li>
-             
+              <li class="nav-item">
+                <a href="{{route('coupon_index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ECampaign</p>                  
+                </a>
+              </li>             
+            </ul>           
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Pickup Point
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('pickup_point_index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pickup Point</p>                  
+                </a>
+              </li>
+                      
             </ul>           
           </li>
          

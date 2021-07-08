@@ -98,4 +98,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::post('/update/{id}','CouponController@update')->name('coupon_update');
 	});
 
+    //pickup point....
+    Route::group(['prefix'=>'pickup-point'], function(){
+		Route::get('/','PickupController@index')->name('pickup_point_index');
+		Route::post('/store','PickupController@store')->name('pickup_point_store');
+        Route::get('/delete/{id}','PickupController@delete')->name('pickup_point_delete');
+        Route::get('/edit/{id}','PickupController@edit')->name('pickup_point_edit');;
+        Route::post('/update/{id}','PickupController@update')->name('pickup_point_update');
+	});
+
+
 });
