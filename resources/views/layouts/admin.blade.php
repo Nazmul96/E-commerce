@@ -31,7 +31,7 @@
 
 </head>
 <body >
-    <div class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
 @guest
 
@@ -67,6 +67,7 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
+
 <!-- jQuery -->
 
 <script src="{{asset('public/backend/plugins/jquery/jquery.min.js')}}"></script>

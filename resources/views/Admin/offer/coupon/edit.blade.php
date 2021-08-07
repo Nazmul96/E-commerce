@@ -1,4 +1,4 @@
-<form action="{{route('coupon_update',$data->id)}}" method="POST">
+<form action="{{route('coupon_update',$data->id)}}" method="POST" id="edit_form">
   @csrf
   <div class="modal-body">
     
@@ -35,3 +35,23 @@
     <button type="Submit" class="btn btn-primary"> <span class="d-none loader"><i class="fas fa-spinner"></i> Loading..</span> <span class="submit_btn">Update </span> </button>
   </div>
 </form>
+
+<script type="text/javascript">
+   $('#edit_form').submit(function(e){
+          e.preventDefault();
+          var url = $(this).attr('action');
+          var request =$(this).serialize();
+          $.ajax({
+            url:url,
+            type:'post',
+            async:false,
+            data:request,
+            success:function(data){  
+              toastr.success(data);
+              $('#edit_form')[0].reset();
+              $('#editModal').modal('hide');
+              table.ajax.reload();
+            }
+          });
+        });
+</script>

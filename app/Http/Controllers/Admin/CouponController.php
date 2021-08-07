@@ -24,7 +24,8 @@ class CouponController extends Controller
     				->addColumn('action', function($row){
 
     					$actionbtn='<a href="#" class="btn btn-info btn-sm edit" data-id="'.$row->id.'" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
-                      	<a href="'.route('coupon_delete',[$row->id]).'" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i>
+
+                      	<a href="'.route('coupon_delete',[$row->id]).'" class="btn btn-danger btn-sm" id="delete_coupon"><i class="fas fa-trash"></i>
                       	</a>';
 
                        return $actionbtn; 	
@@ -45,28 +46,14 @@ class CouponController extends Controller
 			'valid_date'=>$req->valid_date,
 			'status'=>$req->status,
 		]);
-		$notification=array(
-            'message'=>'Coupon Inserted!',
-            'alert-type'=>'success',
-        );
-        return redirect()->back()->with($notification);
+		return response()->json('Coupon inserted!');
 	}
-
-	public function delete($id){
-		$delete=Coupon::find($id);
-		$delete->delete();
-		$notification=array(
-            'message'=>'Coupon Deleted!',
-            'alert-type'=>'success',
-        );
-        return redirect()->back()->with($notification);
-	}
-
+// edit coupon
 	public function edit($id){
 		$data=Coupon::find($id);
 		return view('admin.offer.coupon.edit',compact('data'));
 	}
-
+// update coupon
 	public function update(Request $req,$id){
 		
 		$data=array();
@@ -77,11 +64,17 @@ class CouponController extends Controller
 		$data['status']=$req->status;
 
 		DB::table('coupons')->where('id',$id)->update($data);
-
-		$notification=array(
-            'message'=>'Coupon updated!',
-            'alert-type'=>'success',
-        );
-        return redirect()->back()->with($notification);
+		return response()->json('Coupon updated!');
 	}
+
+
+    // delete coupon
+
+    public function delete($id)
+    {
+        DB::table('coupons')->where('id',$id)->delete();
+        return response()->json('Coupon deleted!');
+    }
+
+
 }

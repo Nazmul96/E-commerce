@@ -58,6 +58,16 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 		Route::post('/update/{id}','WarehouseController@update')->name('warehouse_update');
 	});
 
+    //product Routes..... 
+	Route::group(['prefix'=>'product'], function(){
+		Route::get('/create','ProductController@create')->name('product_create');
+		//Route::post('/store','BrandController@store')->name('brand_store');
+		//Route::get('/delete/{id}','BrandController@delete')->name('brand_delete');
+		//Route::get('/edit/{id}','BrandController@edit');
+		//Route::post('/update/{id}','BrandController@update')->name('brand_update');
+	});
+
+
     //setting Routes..... 
 	Route::group(['prefix'=>'setting'], function(){
         //seo setting....
@@ -93,7 +103,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
     Route::group(['prefix'=>'coupon'], function(){
 		Route::get('/','CouponController@index')->name('coupon_index');
 		Route::post('/store','CouponController@store')->name('coupon_store');
-        Route::get('/delete/{id}','CouponController@delete')->name('coupon_delete');
+        Route::delete('/delete/{id}','CouponController@delete')->name('coupon_delete');
         Route::get('/edit/{id}','CouponController@edit');
         Route::post('/update/{id}','CouponController@update')->name('coupon_update');
 	});

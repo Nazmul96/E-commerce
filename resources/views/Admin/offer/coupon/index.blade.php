@@ -51,6 +51,11 @@
                     
                       </tbody>                     
                     </table>
+                    <form id="deleted_form" action="" method="POST">
+                      @method('DELETE')  
+                      @csrf
+                        
+                    </form>
                   </div>
             </div>
         </div>
@@ -68,7 +73,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('coupon_store')}}" method="POST">
+      <form action="{{route('coupon_store')}}" method="POST" id="add_form">
       @csrf
       <div class="modal-body">
         
@@ -129,7 +134,7 @@
 
 <script type="text/javascript">
 	$(function coupon(){
-		var table=$('.ytable').DataTable({
+		  table=$('.ytable').DataTable({
       processing: true,
       serverSide: true,
 			ajax:"{{route('coupon_index')}}",
@@ -144,6 +149,25 @@
 			]
 		});
 	});
+  
+  //store coupon ajax call
+  $('#add_form').submit(function(e){
+          e.preventDefault();
+          var url = $(this).attr('action');
+          var request =$(this).serialize();
+          $.ajax({
+            url:url,
+            type:'post',
+            async:false,
+            data:request,
+            success:function(data){  
+              toastr.success(data);
+              $('#add_form')[0].reset();
+              $('#addModal').modal('hide');
+              table.ajax.reload();
+            }
+          });
+        });
 
   $('body').on('click','.edit',function(){
       let coupon_id=$(this).data("id");
@@ -152,6 +176,47 @@
          $("#modal_body").html(data);
 
       });
+    });
+    
+//Delete coupon ajax call
+  $(document).ready(function(){
+	      $(document).on('click', '#delete_coupon',function(e){
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $("#deleted_form").attr('action',url);
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+              if (willDelete) {
+                 $("#deleted_form").submit();
+              } else {
+                 swal("Your imaginary file is safe!");
+              }
+            });
+         });
+
+        //data passed through here
+        $('#deleted_form').submit(function(e){
+          e.preventDefault();
+          var url = $(this).attr('action');
+          var request =$(this).serialize();
+          $.ajax({
+            url:url,
+            type:'post',
+            async:false,
+            data:request,
+            success:function(data){  
+              toastr.success(data);
+              $('#deleted_form')[0].reset();
+               table.ajax.reload();
+            }
+          });
+        });
     });
 
 </script>
