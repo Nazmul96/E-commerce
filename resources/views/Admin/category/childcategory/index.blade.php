@@ -74,13 +74,15 @@
         <div class="form-group">
           <label for="category_name">Category/Subcategory Name</label>
           <select class="form-control" name="subcategory_id" required>
+            <option disabled="" selected="">==choose category==</option>
             @foreach ($category as $row)
-            <option>{{$row->category_name}}</option>
-            @php
-                $subcategory=DB::table('subcategories')->where('category_id',$row->id)->get();
-            @endphp           
+              @php
+              $subcategory=DB::table('subcategories')->where('category_id',$row->id)->get();
+              @endphp  
+              <option style="color:blue;" disabled="">{{$row->category_name}}</option>
+                     
             @foreach ($subcategory as $sub)
-            <option value="{{$sub->id}}">---- {{$sub->subcat_name}}</option>
+                 <option value="{{$sub->id}}">---- {{$sub->subcat_name}}</option>
             @endforeach
            @endforeach 
           </select>
