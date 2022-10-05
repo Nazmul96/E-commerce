@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('admin_content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.css" integrity="sha512-3uVpgbpX33N/XhyD3eWlOgFVAraGn3AfpxywfOTEQeBDByJ/J7HkLvl4mJE1fvArGh4ye1EiPfSBnJo2fgfZmg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script type="text/javascript" src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+
 <style type="text/css">
   .bootstrap-tagsinput .tag {
     background: #428bca;;
@@ -13,7 +13,6 @@
     border-radius: 4px;
   }
 </style>
-
 
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -46,7 +45,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-       <form action="" method="post" enctype="multipart/form-data">
+       <form action="{{route('product_store')}}" method="post" enctype="multipart/form-data">
         @csrf
        	<div class="row">
           <!-- left column -->
@@ -162,14 +161,14 @@
                   <div class="row">
                     <div class="form-group col-lg-12">
                       <label for="exampleInputPassword1">Product Details</label>
-                      <textarea class="form-control textarea" name="description">{{ old('description') }}</textarea>
+                      <textarea class="form-control textarea" name="description" value="{{ old('description') }}"></textarea>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-lg-12">
                       <label for="exampleInputPassword1">Video Embed Code</label>
-                      <textarea class="form-control" name="video">{{ old('video') }}</textarea>
+                      <textarea class="form-control" name="video" value="{{ old('video') }}"></textarea>
                     </div>
                   </div>
                 </div>
@@ -238,7 +237,10 @@
       $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
-    $("#subcategory_id").change(function(){
+
+  //childcategory select by ajax request......
+
+      $("#subcategory_id").change(function(){
       var id = $(this).val();
       $.ajax({
            url: "{{ url("/get-child-category/") }}/"+id,
@@ -253,7 +255,7 @@
   });
 
 
-
+//add more image using jquery
 
     $(document).ready(function(){      
        var postURL = "<?php echo url('addmore'); ?>";

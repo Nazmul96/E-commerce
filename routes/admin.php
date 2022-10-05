@@ -62,13 +62,21 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 		Route::post('/update/{id}','WarehouseController@update')->name('warehouse_update');
 	});
 
+    
     //product Routes..... 
 	Route::group(['prefix'=>'product'], function(){
+        Route::get('/','ProductController@index')->name('product_index');
 		Route::get('/create','ProductController@create')->name('product_create');
-		//Route::post('/store','BrandController@store')->name('brand_store');
-		//Route::get('/delete/{id}','BrandController@delete')->name('brand_delete');
+		Route::post('/store','ProductController@store')->name('product_store');
+		Route::get('/delete/{id}','ProductController@product_delete')->name('product_delete');
 		//Route::get('/edit/{id}','BrandController@edit');
 		//Route::post('/update/{id}','BrandController@update')->name('brand_update');
+        Route::get('/featured-active/{id}','ProductController@featured_active');
+        Route::get('/featured-deactive/{id}','ProductController@featured_deactive');
+        Route::get('/todaydeal-active/{id}','ProductController@todaydeal_active');
+        Route::get('/todaydeal-deactive/{id}','ProductController@todaydeal_deactive');
+        Route::get('/status-active/{id}','ProductController@status_active');
+        Route::get('/status-deactive/{id}','ProductController@status_deactive');
 	});
 
 

@@ -51,6 +51,8 @@ class BrandController extends Controller
 		$data['brand_slug']=str::slug($req->brand_name,'-');
 		//working with Image
 		$image=$req->brand_logo;
+		// echo $image;
+		// die();
 		$image_name=str::slug($req->brand_name,'-'); //unique nmae generate every time
 		$ext=strtolower($image->getClientOriginalExtension());
 		$image_full_name=$image_name.'.'.$ext;

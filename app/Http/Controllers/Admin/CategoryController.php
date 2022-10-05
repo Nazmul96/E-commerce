@@ -95,9 +95,9 @@ class CategoryController extends Controller
 	//get child category
     public function GetChildCategory($id)  //subcategory_id
     {
-        // $data=DB::table('childcategories')->where('subcategory_id',$id)->get();
-        // return response()->json($data);
-        return $id;
+        $data=DB::table('childcategories')->where('subcategory_id',$id)->get();
+         return response()->json($data);
+        
     }
 
 }

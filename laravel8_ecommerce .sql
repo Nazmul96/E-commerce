@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2021 at 08:08 PM
+-- Generation Time: Aug 28, 2021 at 04:46 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -98,7 +98,8 @@ INSERT INTO `childcategories` (`id`, `category_id`, `subcategory_id`, `childcate
 (5, 10, 8, 'Geants', 'geants', NULL, NULL),
 (11, 10, 6, 'Casio', 'casio', NULL, NULL),
 (12, 10, 8, 'Gabadings', 'gabadings', NULL, NULL),
-(16, 10, 6, 'Rolex', 'rolex', NULL, NULL);
+(16, 10, 6, 'Rolex', 'rolex', NULL, NULL),
+(17, 10, 12, 'skyblue', 'skyblue', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -260,7 +261,8 @@ CREATE TABLE `products` (
   `brand_id` int(11) DEFAULT NULL,
   `pickup_point_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -270,7 +272,7 @@ CREATE TABLE `products` (
   `selling_price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `discount_price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stock_quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `warehouse` int(11) DEFAULT NULL,
+  `warehouse` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `images` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -280,9 +282,19 @@ CREATE TABLE `products` (
   `flash_deal_id` int(11) DEFAULT NULL,
   `cash_on_delivery` int(11) DEFAULT NULL,
   `admin_id` int(11) DEFAULT NULL,
+  `date` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `month` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `subcategory_id`, `childcategory_id`, `brand_id`, `pickup_point_id`, `name`, `slug`, `code`, `unit`, `tags`, `color`, `size`, `video`, `purchase_price`, `selling_price`, `discount_price`, `stock_quantity`, `warehouse`, `description`, `thumbnail`, `images`, `featured`, `today_deal`, `status`, `flash_deal_id`, `cash_on_delivery`, `admin_id`, `date`, `month`, `created_at`, `updated_at`) VALUES
+(1, 10, 8, 5, 4, 1, 'china_jeans', 'china-jeans', 'j101', 'pcs', 'catualpans', 'black,gray,blue', '30,31,32,34,35', 'v101', '1500', '2000', '1800', '100', 'warehouse-101', '<p>All type of pants you can buy from our website</p>', 'china-jeans.jpg', '[\"1707904370493360.jpg\",\"1707904370543864.jpg\"]', 1, 1, 1, NULL, NULL, 1, '12-08-2021', 'August', NULL, NULL),
+(3, 10, 12, 17, 8, 3, 'shirt', 'shirt', 's10', 'pcs', 'formalshirt', 'skyblue', 'x,xl,xxl', 'v2', '1500', '2000', '1900', '100', 'warehouse-102', '<p>you can buy formal shirt from our website</p>', 'shirt.jpeg', '[\"1707955665699297.jpeg\",\"1707955665823895.jpeg\"]', 1, 1, 1, NULL, NULL, 1, '13-08-2021', 'August', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -361,7 +373,7 @@ INSERT INTO `subcategories` (`id`, `category_id`, `subcat_name`, `subcat_slug`, 
 (6, 10, 'mens-Watches', 'watches', NULL, NULL),
 (7, 10, 'Mens-Glass', 'mens-glass', NULL, '2021-05-18 21:51:04'),
 (8, 10, 'Mens_pant', 'mens-pant', NULL, NULL),
-(12, 6, 'Formal-Shirts', 'formal-shirts', NULL, '2021-05-30 23:43:34'),
+(12, 10, 'Formal-Shirts', 'formal-shirts', NULL, '2021-08-12 23:31:43'),
 (13, 13, 'leknes', 'leknes', NULL, NULL),
 (14, 9, 'punjabi', 'punjabi', NULL, NULL);
 
@@ -576,7 +588,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `childcategories`
 --
 ALTER TABLE `childcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -612,7 +624,7 @@ ALTER TABLE `pickup_point`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `seos`

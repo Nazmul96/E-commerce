@@ -97,7 +97,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('subcat_index')}}" class="nav-link">
+                <a href="{{route('product_index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Product Manage</p>
                 </a>

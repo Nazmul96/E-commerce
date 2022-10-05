@@ -6,8 +6,6 @@
   <title>AdminLTE 3 | Dashboard 2</title>
   
   <!-- Google Font: Source Sans Pro -->
-  
-  
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -16,6 +14,7 @@
   <link rel="stylesheet" href="{{asset('public/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('public/backend/dist/css/adminlte.min.css')}}">
+  
   <!-- sweet-alert and Toaster -->
   <link rel="stylesheet" type="text/css" href="{{ asset('public/backend/plugins/toastr/toastr.css') }}">
 
@@ -95,7 +94,6 @@
 
 <!-- sweet alert and toaster js file -->
 <script type="text/javascript" src="{{ asset('public/backend/plugins/toastr/toastr.min.js') }}"></script>
-
 <script src="{{ asset('public/backend/plugins/sweetalert/sweetalert.min.js') }}"></script>
 
 <!-- DataTables  & Plugins -->
@@ -111,6 +109,10 @@
 <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+<script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 
 <!-- Summernote -->
 <script src="{{asset('public/backend/plugins/summernote/summernote-bs4.min.js')}}"></script>
