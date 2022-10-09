@@ -120,7 +120,7 @@
         "data":function(e) {
           e.category_id =$("#category_id").val();
           e.brand_id =$("#brand_id").val();
-          e.status =$("#status").val();
+          e.status=$("#status").val();
           e.warehouse =$("#warehouse_id").val();
         }
       },

@@ -40,10 +40,10 @@ class ProductController extends Controller
                 $query->where('products.warehouse',$request->warehouse);
             }
 
-            // if ($request->status==1) {
+            // if ($request->status_new==1) {
             //     $query->where('products.status',1);
             // }
-            // if ($request->status==0) {
+            // if ($request->status_new==0) {
             //     $query->where('products.status',0);
             // }
 
@@ -157,6 +157,7 @@ class ProductController extends Controller
         $data['featured']=$req->featured;
         $data['today_deal']=$req->today_deal;
         $data['status']=$req->status;
+        $data['product_slider']=$req->product_slider;
         $data['admin_id']=Auth::id();
         $data['date']=date('d-m-Y');
         $data['month']=date('F');
