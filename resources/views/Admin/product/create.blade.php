@@ -168,7 +168,7 @@
                   <div class="row">
                     <div class="form-group col-lg-12">
                       <label for="exampleInputPassword1">Video Embed Code</label>
-                      <textarea class="form-control" name="video" value="{{ old('video') }}"></textarea>
+                      <input class="form-control" name="video" value="{{ old('video') }}" placeholder="Only Code After Embed">
                     </div>
                   </div>
                 </div>

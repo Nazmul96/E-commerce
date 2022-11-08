@@ -90,7 +90,7 @@ class ProductController extends Controller
     				->addColumn('action', function($row){
     					$actionbtn='<a href="#" class="btn btn-info btn-sm edit"><i class="fas fa-edit"></i></a>
                         <a href="#" class="btn btn-info btn-sm edit"><i class="fas fa-eye"></i></a>
-                      	<a href="'.route('brand_delete',[$row->id]).'" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i>
+                      	<a href="'.route('product_delete',[$row->id]).'" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i>
                       	</a>';
 
                        return $actionbtn; 	
@@ -187,18 +187,17 @@ class ProductController extends Controller
        $notification=array(
         'message'=>'Product Inserted!',
         'alert-type'=>'success',
-       );
-      return redirect()->back()->with($notification);  
-
+       ); 
+      return redirect()->route('product_index')->with($notification);
 
     }
 
     //Product delete------------
-    public function delete($id)
+    public function product_delete($id)
     {
         DB::table('products')->where('id',$id)->delete();
         $notification=array(
-            'message'=>'Product Inserted!',
+            'message'=>'Product Deleted!',
             'alert-type'=>'success',
            );
         return redirect()->back()->with($notification);  

@@ -39,6 +39,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     public function login(Request $request){
+
         $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -48,11 +49,13 @@ class LoginController extends Controller
                 return redirect()->route('admin_home');
             }
             else{
+
                 return redirect()->route('home');
             }
         }
-
-        else{
+        else
+        {
+       
             return redirect()->back()->with('error','Invalid email or password');
         }
     }

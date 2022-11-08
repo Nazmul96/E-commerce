@@ -10,7 +10,7 @@
         <div class="card-body">
           <p class="login-box-msg">Admin Login Panel</p>
     
-          <form action="{{ route('login') }}" method="post">
+          <form action="{{route('login')}}" method="post">
             @csrf
             <div class="input-group mb-3">
               <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

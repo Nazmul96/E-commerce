@@ -1,5 +1,7 @@
 <!-- Main Navigation -->
-
+@php 
+ $category=DB::table('categories')->get();
+@endphp
 <nav class="main_nav">
     <div class="container">
         <div class="row">
@@ -16,31 +18,32 @@
                         </div>
 
                         <ul class="cat_menu">
-                            <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                            <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                            <li class="hassubs">
-                                <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                <ul>
-                                    <li class="hassubs">
-                                        <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                            
+                           @foreach ($category as $categories)
+                                @php
+                                   $subcat=DB::table('subcategories')->where('category_id',$categories->id)->get(); 
+                                @endphp
+                                <li class="hassubs">
+                                    <a href="#">{{$categories->category_name}}<i class="fas fa-chevron-right"></i></a>
+                                    <ul>
+                                        @foreach ($subcat as $subcategories)
+                                            @php
+                                                $childcat=DB::table('childcategories')->where('subcategory_id',$subcategories->id)->get(); 
+                                            @endphp
+                                            <li>
+                                                <a href="#">{{$subcategories->subcat_name}}<i class="fas fa-chevron-right"></i></a>
+                                                    <ul>
+                                                        @foreach ($childcat as $childcategories)
+                                                            <li>
+                                                                <a href="#">{{$childcategories->childcategory_name}}<i class="fas fa-chevron-right"></i></a>
+                                                            </li>
+                                                        @endforeach    
+                                                    </ul>
+                                            </li>
+                                        @endforeach    
+                                    </ul>
+                                </li>   
+                          @endforeach      
                         </ul>
                     </div>
 
@@ -48,53 +51,10 @@
 
                     <div class="main_nav_menu ml-auto">
                         <ul class="standard_dropdown main_nav_dropdown">
-                            <li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-                            <li class="hassubs">
-                                <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </li>
-                            <li class="hassubs">
-                                <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </li>
-                            <li class="hassubs">
-                                <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="{{ url('/') }}">Home<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="#">Campaign<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="">Contact<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="#">Helpline<i class="fas fa-chevron-down"></i></a></li>
                         </ul>
                     </div>
 
