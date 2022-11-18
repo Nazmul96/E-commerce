@@ -17,7 +17,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend')}}/plugins/slick-1.8.0/slick.css">
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend')}}/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend')}}/styles/responsive.css">
-
+<!-- sweet-alert and Toaster -->
+<link rel="stylesheet" type="text/css" href="{{ asset('public/backend/plugins/toastr/toastr.css') }}">
 
 </head>
 
@@ -94,7 +95,7 @@
 										  </ul>
 										</li>
 										<li>
-											<a href="">Register</a>
+											<a href="{{route('register')}}">Register</a>
 										</li>
 									</ul>
 								</div>
@@ -146,6 +147,10 @@
 						</div>
 					</div>
 
+					@php
+						$wishlist=DB::table('wishlists')->where('user_id',Auth::id())->count();
+				    @endphp
+
 					<!-- Wishlist -->
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
@@ -153,7 +158,7 @@
 								<div class="wishlist_icon"><img src="{{asset('public/frontend')}}/images/heart.png" alt=""></div>
 								<div class="wishlist_content">
 									<div class="wishlist_text"><a href="#">Wishlist</a></div>
-									<div class="wishlist_count">115</div>
+									<div class="wishlist_count">{{$wishlist}}</div>
 								</div>
 							</div>
 
@@ -297,6 +302,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{asset('public/frontend')}}/plugins/easing/easing.js"></script>
 <script src="{{asset('public/frontend')}}/js/custom.js"></script>
 <script src="{{asset('public/frontend')}}/js/product_custom.js"></script>
-</body>
+<!-- sweet alert and toaster js file -->
+<script type="text/javascript" src="{{ asset('public/backend/plugins/toastr/toastr.min.js') }}"></script>
 
+
+<script>
+	@if(Session::has('messege'))
+	  var type="{{Session::get('alert-type')}}"
+	  switch(type){
+		  case 'info':
+			   toastr.info("{{ Session::get('messege') }}");
+			   break;
+		  case 'success':
+			  toastr.success("{{ Session::get('messege') }}");
+			  break;
+		  case 'warning':
+			 toastr.warning("{{ Session::get('messege') }}");
+			  break;
+		  case 'error':
+			  toastr.error("{{ Session::get('messege') }}");
+			  break;
+			}
+	@endif
+</script>
+</body>
 </html>

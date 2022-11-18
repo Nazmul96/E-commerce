@@ -157,11 +157,12 @@ class ProductController extends Controller
         $data['featured']=$req->featured;
         $data['today_deal']=$req->today_deal;
         $data['status']=$req->status;
+        $data['trendy_product']=$req->trendy_product;
         $data['product_slider']=$req->product_slider;
         $data['admin_id']=Auth::id();
         $data['date']=date('d-m-Y');
         $data['month']=date('F');
-
+        
         
         //single thumbnail
         if ($req->thumbnail) {

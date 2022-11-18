@@ -24,4 +24,10 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
 
     Route::get('/','IndexController@index');
     Route::get('/product/details/{slug}','IndexController@product_details')->name('product_details');
+
+    //review for product----------
+    Route::post('/store/review','ReviewController@store')->name('store.review');
+
+    //Wishlists-------------
+    Route::get('/add/wishlist/{id}','CartController@AddWishlist')->name('add.wishlist');
 });   

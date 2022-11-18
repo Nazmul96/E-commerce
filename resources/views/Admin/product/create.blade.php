@@ -210,7 +210,12 @@
                      <div class="card p-4">
                       <h6>Product Slider</h6>
                      <input type="checkbox" name="product_slider" value="1" data-bootstrap-switch data-off-color="danger" data-on-color="success">
-                   </div>
+                    </div>
+
+                    <div class="card p-4">
+                      <h6>Trendy Product</h6>
+                     <input type="checkbox" name="trendy_product" value="1" data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                    </div>
 
                      <div class="card p-4">
                         <h6>Status</h6>
