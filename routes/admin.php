@@ -120,6 +120,15 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::post('/update/{id}','CouponController@update')->name('coupon_update');
 	});
 
+      //Campaign.....................
+      Route::group(['prefix'=>'campaign'], function(){
+		Route::get('/','CampignController@index')->name('campaign.index');
+		Route::post('/store','CampignController@store')->name('campaign.store');
+        Route::get('/delete/{id}','CampignController@delete')->name('campaign.delete');
+        Route::get('/edit/{id}','CampignController@edit');
+        Route::post('/update','CampignController@update')->name('campaign.update');
+	});
+
     //pickup point....
     Route::group(['prefix'=>'pickup-point'], function(){
 		Route::get('/','PickupController@index')->name('pickup_point_index');

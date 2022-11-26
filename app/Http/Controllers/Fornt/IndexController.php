@@ -17,7 +17,8 @@ class IndexController extends Controller
         $banner_product=Product::where('product_slider',1)->latest()->first();
         $feature_product=Product::where('status',1)->where('featured',1)->orderBy('id','DESC')->limit(16)->get();
         $popular_product=Product::where('status',1)->orderBy('product_views','DESC')->limit(8)->get();
-        return view('frontend.index',compact('category','banner_product','feature_product','popular_product'));
+        $trendy_product=Product::where('status',1)->where('trendy_product',1)->orderBy('id','DESC')->limit(8)->get();
+        return view('frontend.index',compact('category','banner_product','feature_product','popular_product','trendy_product'));
     }
 
     public function product_details($slug)
@@ -28,6 +29,15 @@ class IndexController extends Controller
         $product=Product::where('slug',$slug)->first();
         $related_product=DB::table('products')->where('subcategory_id',$product->subcategory_id)->orderBy('id','DESC')->take(10)->get();
         $review=Review::where('product_id',$product->id)->orderBy('id','DESC')->take(10)->get();
-        return view('frontend.product_details',compact('product','related_product','review'));
+        return view('frontend.product.product_details',compact('product','related_product','review'));
     }
+
+    //product quick view
+    public function ProductQuickView($id)
+    {
+        $product=Product::where('id',$id)->first();
+        //dd($product);
+        return view('frontend.product.quick_view',compact('product'));
+    }
+
 }

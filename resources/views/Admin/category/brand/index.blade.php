@@ -114,7 +114,6 @@
   </div>
 </div>
 <!-- dorpify cdn javscript link-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{{asset('public/frontend/dist/js/dropify.js')}}"></script>
 <script type="text/javascript">//dropify 
 	$('.dropify').dropify();

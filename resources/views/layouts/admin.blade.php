@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{asset('public/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   
-
+    <script src="{{asset('public/backend/plugins/jquery/jquery.min.js')}}"></script>
 
 </head>
 <body >
@@ -69,7 +69,7 @@
 
 <!-- jQuery -->
 
-<script src="{{asset('public/backend/plugins/jquery/jquery.min.js')}}"></script>
+
 <!-- Bootstrap -->
 <script src="{{asset('public/backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- overlayScrollbars -->

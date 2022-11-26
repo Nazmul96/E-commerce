@@ -20,6 +20,7 @@
 <!-- sweet-alert and Toaster -->
 <link rel="stylesheet" type="text/css" href="{{ asset('public/backend/plugins/toastr/toastr.css') }}">
 
+<script src="{{asset('public/frontend')}}/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -289,7 +290,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 </div>
 
-<script src="{{asset('public/frontend')}}/js/jquery-3.3.1.min.js"></script>
+
 <script src="{{asset('public/frontend')}}/styles/bootstrap4/popper.js"></script>
 <script src="{{asset('public/frontend')}}/styles/bootstrap4/bootstrap.min.js"></script>
 <script src="{{asset('public/frontend')}}/plugins/greensock/TweenMax.min.js"></script>

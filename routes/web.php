@@ -25,6 +25,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     Route::get('/','IndexController@index');
     Route::get('/product/details/{slug}','IndexController@product_details')->name('product_details');
 
+    //product-quick-view---------
+    Route::get('/product-quick-view/{id}','IndexController@ProductQuickView');
+
     //review for product----------
     Route::post('/store/review','ReviewController@store')->name('store.review');
 
