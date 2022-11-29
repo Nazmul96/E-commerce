@@ -1,9 +1,7 @@
 @extends('layouts.admin')
 @section('admin_content')
   <!--dorpify link-->
-  <script src="{{asset('public/frontend/dist/css/dropify.css')}}"></script>
-  <!-- dorpify cdn link-->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css">  
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"> 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">

@@ -22,7 +22,9 @@
                                    $subcat=DB::table('subcategories')->where('category_id',$categories->id)->get(); 
                                 @endphp
                                 <li class="hassubs">
-                                    <a href="#">{{$categories->category_name}}<i class="fas fa-chevron-right"></i></a>
+                                    <a href="#">
+                                        <img src="{{ asset($categories->icon) }}" height="18" width="18"> {{$categories->category_name}}<i class="fas fa-chevron-right"></i>
+                                    </a>
                                     <ul>
                                         @foreach ($subcat as $subcategories)
                                             @php
