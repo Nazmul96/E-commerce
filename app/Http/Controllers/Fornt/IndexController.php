@@ -21,15 +21,17 @@ class IndexController extends Controller
         //homepage category
         $home_category=DB::table('categories')->where('home_page',1)->orderBy('category_name','ASC')->get();
 
-        return view('frontend.index',compact('category','banner_product','feature_product','popular_product','trendy_product','home_category'));
+        $brand=DB::table('brands')->where('front_page',1)->limit(24)->get();
+        $random_product=Product::where('status',1)->inRandomOrder()->limit(16)->get();
+        return view('frontend.index',compact('category','banner_product','feature_product','popular_product','trendy_product','home_category','brand','random_product'));
     }
 
     public function product_details($slug)
     {
         /* product views count */
         Product::where('slug',$slug)->increment('product_views');
-
-        $product=Product::where('slug',$slug)->first();
+          
+        $product=Product::where('slug',$slug)->first(); 
         $related_product=DB::table('products')->where('subcategory_id',$product->subcategory_id)->orderBy('id','DESC')->take(10)->get();
         $review=Review::where('product_id',$product->id)->orderBy('id','DESC')->take(10)->get();
         return view('frontend.product.product_details',compact('product','related_product','review'));

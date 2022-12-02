@@ -19,6 +19,15 @@
         <input type="hidden"  data-height="140" value="{{$data->brand_logo}}" name="old_logo" >
         <small id="emailHelp" class="form-text text-muted">This is your Brand Logo </small>
       </div>  
+
+      <div class="form-group">
+        <label for="brand-name">Home Pgae Show</label>
+        <select class="form-control" name="front_page">
+          <option value="1" @if($data->front_page==1) selected="" @endif>Yes</option>
+          <option value="0" @if($data->front_page==0) selected="" @endif>No</option>
+        </select>
+        <small id="emailHelp" class="form-text text-muted">If yes it will be show on your home page </small>
+      </div>
     </div>
 
     <div class="modal-footer"> 
