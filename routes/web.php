@@ -28,6 +28,10 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     //product-quick-view---------
     Route::get('/product-quick-view/{id}','IndexController@ProductQuickView');
 
+    //Cart---------------
+    Route::post('/addtocart','CartController@AddToCartQV')->name('add.to.cart.quickview');
+    Route::get('/all-cart','CartController@AllCart')->name('all.cart');
+    
     //review for product----------
     Route::post('/store/review','ReviewController@store')->name('store.review');
 
