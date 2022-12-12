@@ -31,7 +31,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     //Cart---------------
     Route::post('/addtocart','CartController@AddToCartQV')->name('add.to.cart.quickview');
     Route::get('/all-cart','CartController@AllCart')->name('all.cart');
-    
+    Route::get('/my-cart','CartController@MyCart')->name('cart.page');
+    Route::get('/cart/empty','CartController@EmptyCart')->name('cart.empty');
+    Route::get('/cartproduct/remove/{rowId}','CartController@RemoveProduct');
+    Route::get('/cartproduct/updateqty/{rowId}/{qty}','CartController@UpdateQty');
+    Route::get('/cartproduct/updatecolor/{rowId}/{color}','CartController@UpdateColor');
+    Route::get('/cartproduct/updatesize/{rowId}/{size}','CartController@UpdateSize');
+
+
     //review for product----------
     Route::post('/store/review','ReviewController@store')->name('store.review');
 

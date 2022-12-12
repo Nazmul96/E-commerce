@@ -190,72 +190,58 @@
                      {{ $setting->currency }}{{ $product->discount_price }}</div>
                @endif
                 <div class="order_info d-flex flex-row">
-                    <form action="#">
-
-                        <div class="form-group">
-                            <div class="row">
-                              @isset($product->size) 
-                                <div class="col-lg-6">
-                                    <label>Pick Size: </label>
-                                    <select class="custom-select form-control-sm" name="size" style="min-width: 120px;">
-                                        @foreach($sizes as $size)
-                                            <option value="{{ $size }}">{{ $size }}</option>
-                                        @endforeach
-                                    </select>   
-                                </div>
-                               @endisset
-                               @isset($product->color) 
-                                <div class="col-lg-6">
-                                    <label>Pick Color: </label>
-                                    <select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
-                                        @foreach($color as $row)
-												   <option value="{{ $row }}">{{ $row }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                               @endisset  
-                            </div>
-                        </div>
-                        <br>
-                        <div class="clearfix" style="z-index: 1000;">
-                            <!-- Product Quantity -->
-                            <div class="product_quantity clearfix">
-                                <span>Quantity: </span>
-                                <input id="quantity_input" type="text" pattern="[1-9]*" value="1">
-                                <div class="quantity_buttons">
-                                    <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
-                                    <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
-                                </div>
-                            </div>
-
-                            <!-- Product Color -->
-                            <ul class="product_color">
-                                <li>
-                                    <span>Color: </span>
-                                    <div class="color_mark_container"><div id="selected_color" class="color_mark"></div></div>
-                                    <div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
-
-                                    <ul class="color_list">
-                                        <li><div class="color_mark" style="background: #999999;"></div></li>
-                                        <li><div class="color_mark" style="background: #b19c83;"></div></li>
-                                        <li><div class="color_mark" style="background: #000000;"></div></li>
-                                    </ul>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <div class="button_container">
-                            <div class="input-group mb-3">
+                    <form action="{{ route('add.to.cart.quickview') }}" method="post" id="add_cart_form">
+                        @csrf
+                        {{-- cart add details --}}
+                        <input type="hidden" name="id" value="{{$product->id}}">
+                        @if($product->discount_price==NULL)
+                        <input type="hidden" name="price" value="{{$product->selling_price}}">
+                        @else
+                        <input type="hidden" name="price" value="{{$product->discount_price}}">
+                        @endif
+                          <div class="form-group">
+                                  <div class="row">
+                                      @isset($product->size)
+                                                            <div class="col-lg-4">
+                                                                <label>Size: </label>
+                                                                <select class="custom-select form-control-sm" name="size" style="min-width: 120px; margin-left: -4px;">
+                                                                    @foreach($sizes as $size)
+                                                                       <option value="{{ $size }}">{{ $size }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        @endisset
+                                      @isset($product->color)
+                                      <div class="col-lg-4">
+                                          <label>Color: </label>
+                                          <select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
+                                              @foreach($color as $row)
+                                                 <option value="{{ $row }}">{{ $row }}</option>
+                                              @endforeach
+                                          </select>
+                                      </div>
+                                      @endisset
+                                      
+                                  </div>
+                                  <div class="col-lg-4" style="margin-left: -5px;">
+                                    <label>Quantity: </label>
+                                      <input type="number" min="1" max="100" name="qty" class="form-control-sm" value="1" style="min-width: 120px; margin-left: -4px;">
+                                  </div>
+                              </div>
+                          <div class="button_container">
+                              <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                  
-                                    <button class="btn btn-outline-info" type="submit"> <span class="loading d-none">....</span> Add to cart</button>
-
-                                    <a href="{{ route('add.wishlist',$product->id) }}" class="btn btn-outline-primary" type="button">Add to wishlist</a>
+                                    @if($product->stock_quantity<1)
+                                    <span class="text-danger">Stock Out</span>
+                                    @else
+                                  <button class="btn btn-sm btn-outline-info" type="submit" style="float: right;">
+                                 <span class="loading d-none">....</span> Add to cart</button>
+                                  @endif
                                 </div>
-                            </div>
-                        </div>
-                    </form>
+                              </div>
+                          </div>
+                          
+                      </form>
                 </div>
             </div>
         </div>
@@ -522,63 +508,26 @@
 </div>
 </div>
 
-<!-- Brands -->
+<script type="text/javascript">
+    //Add to cart ajax call
+    $('#add_cart_form').submit(function(e){
+      e.preventDefault();
+      $('.loading').removeClass('d-none');
+      var url = $(this).attr('action');
+      var request =$(this).serialize();
+      $.ajax({
+        url:url,
+        type:'post',
+        async:false,
+        data:request,
+        success:function(data){
+          toastr.success(data);
+          $('#add_cart_form')[0].reset();
+          $('.loading').addClass('d-none');
+          cart();
+        }
+      });
+    });
+  </script> 
 
-<div class="brands">
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="brands_slider_container">
-                
-                <!-- Brands Slider -->
-
-                <div class="owl-carousel owl-theme brands_slider">
-                    
-                    <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('public/frontend')}}/images/brands_1.jpg" alt=""></div></div>
-                    <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('public/frontend')}}/images/brands_2.jpg" alt=""></div></div>
-                    <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('public/frontend')}}/images/brands_3.jpg" alt=""></div></div>
-                    <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('public/frontend')}}/images/brands_4.jpg" alt=""></div></div>
-                    <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('public/frontend')}}/images/brands_5.jpg" alt=""></div></div>
-                    <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('public/frontend')}}/images/brands_6.jpg" alt=""></div></div>
-                    <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('public/frontend')}}/images/brands_7.jpg" alt=""></div></div>
-                    <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('public/frontend')}}/images/brands_8.jpg" alt=""></div></div>
-
-                </div>
-                
-                <!-- Brands Slider Navigation -->
-                <div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
-                <div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
-
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<!-- Newsletter -->
-
-<div class="newsletter">
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
-                <div class="newsletter_title_container">
-                    <div class="newsletter_icon"><img src="{{asset('public/frontend')}}/images/send.png" alt=""></div>
-                    <div class="newsletter_title">Sign up for Newsletter</div>
-                    <div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
-                </div>
-                <div class="newsletter_content clearfix">
-                    <form action="#" class="newsletter_form">
-                        <input type="email" class="newsletter_input" required="required" placeholder="Enter your email address">
-                        <button class="newsletter_button">Subscribe</button>
-                    </form>
-                    <div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-
-@endsection
+  @endsection
