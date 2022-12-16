@@ -43,5 +43,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     Route::post('/store/review','ReviewController@store')->name('store.review');
 
     //Wishlists-------------
+    Route::get('wishlist','CartController@wishlist')->name('wishlist');
     Route::get('/add/wishlist/{id}','CartController@AddWishlist')->name('add.wishlist');
+    Route::get('/clear/wishlist','CartController@Clearwishlist')->name('clear.wishlist');
+    Route::get('/wishlist/product/delete/{id}','CartController@wishlistProductDelete')->name('wishlistproduct.delete');
 });   

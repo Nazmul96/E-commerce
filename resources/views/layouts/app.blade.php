@@ -158,7 +158,7 @@
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="{{asset('public/frontend')}}/images/heart.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="#">Wishlist</a></div>
+									<div class="wishlist_text"><a href="{{route('wishlist')}}">Wishlist</a></div>
 									<div class="wishlist_count">{{$wishlist}}</div>
 								</div>
 							</div>
