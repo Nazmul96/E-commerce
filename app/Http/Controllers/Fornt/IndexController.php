@@ -47,4 +47,15 @@ class IndexController extends Controller
         return view('frontend.product.quick_view',compact('product'));
     }
 
+     //categorywise product page
+     public function categoryWiseProduct($id)
+     {
+         $category=DB::table('categories')->where('id',$id)->first();
+         $subcategory=DB::table('subcategories')->where('category_id',$id)->get();
+         $brand=DB::table('brands')->get();
+         $products=DB::table('products')->where('category_id',$id)->paginate(60);
+         $random_product=Product::where('status',1)->inRandomOrder()->limit(16)->get();
+         return view('frontend.product.category_products',compact('subcategory','brand','products','random_product','category'));
+ 
+     }
 }

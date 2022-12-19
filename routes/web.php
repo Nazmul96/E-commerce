@@ -47,4 +47,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     Route::get('/add/wishlist/{id}','CartController@AddWishlist')->name('add.wishlist');
     Route::get('/clear/wishlist','CartController@Clearwishlist')->name('clear.wishlist');
     Route::get('/wishlist/product/delete/{id}','CartController@wishlistProductDelete')->name('wishlistproduct.delete');
+
+    //categorywise product------------------
+    Route::get('/category/product/{id}','IndexController@categoryWiseProduct')->name('categorywise.product');
 });   
