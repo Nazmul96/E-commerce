@@ -1,6 +1,6 @@
 <!-- Main Navigation -->
 @php 
- $category=DB::table('categories')->get();
+ $category=DB::table('categories')->orderBy('category_name','ASC')->get();
 @endphp
 <nav class="main_nav">
     <div class="container">
@@ -24,7 +24,7 @@
                                    $subcat=DB::table('subcategories')->where('category_id',$categories->id)->get(); 
                                 @endphp
                                 <li class="hassubs">
-                                    <a href="">
+                                    <a href="{{route('categorywise.product',$categories->id)}}">
                                         <img src="{{ asset($categories->icon) }}" height="18" width="18">  {{ $categories->category_name }}<i class="fas fa-chevron-right"></i>
                                       </a>
                                     <ul>
@@ -33,11 +33,11 @@
                                                 $childcat=DB::table('childcategories')->where('subcategory_id',$subcategories->id)->get(); 
                                             @endphp
                                             <li>
-                                                <a href="#">{{$subcategories->subcat_name}}<i class="fas fa-chevron-right"></i></a>
+                                                <a href="{{route('subcategorywise.product',$subcategories->id) }}">{{$subcategories->subcat_name}}<i class="fas fa-chevron-right"></i></a>
                                                     <ul>
                                                         @foreach ($childcat as $childcategories)
                                                             <li>
-                                                                <a href="#">{{$childcategories->childcategory_name}}<i class="fas fa-chevron-right"></i></a>
+                                                                <a href="{{ route('childcategorywise.product',$childcategories->id)}}">{{$childcategories->childcategory_name}}<i class="fas fa-chevron-right"></i></a>
                                                             </li>
                                                         @endforeach    
                                                     </ul>

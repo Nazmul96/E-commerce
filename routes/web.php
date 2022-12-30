@@ -42,6 +42,10 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     //review for product----------
     Route::post('/store/review','ReviewController@store')->name('store.review');
 
+    //this review for website not product-------------
+    Route::get('/write/review','ReviewController@write')->name('write.review');
+    Route::post('/store/website/review','ReviewController@StoreWebsiteReview')->name('store.website.review');
+    
     //Wishlists-------------
     Route::get('wishlist','CartController@wishlist')->name('wishlist');
     Route::get('/add/wishlist/{id}','CartController@AddWishlist')->name('add.wishlist');
@@ -50,4 +54,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
 
     //categorywise product------------------
     Route::get('/category/product/{id}','IndexController@categoryWiseProduct')->name('categorywise.product');
+    Route::get('/subcategory/product/{id}','IndexController@SubcategoryWiseProduct')->name('subcategorywise.product');
+    Route::get('/childcategory/product/{id}','IndexController@ChildcategoryWiseProduct')->name('childcategorywise.product');
+    Route::get('/brandwise/product/{id}','IndexController@BrandWiseProduct')->name('brandwise.product');
 });   

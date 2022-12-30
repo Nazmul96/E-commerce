@@ -9,7 +9,7 @@
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{ asset('public/frontend') }}/images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title">{{$category->category_name}}</h2>
+			<h2 class="home_title">{{ $childcategory->childcategory_name }}</h2>
 		</div>
 	</div>
 <!-- Shop -->
@@ -20,10 +20,10 @@
 			                <div class="brands_slider_container">  
 			                    <!-- Brands Slider -->
 			                    <div class="owl-carousel owl-theme brands_slider">
-			                       @foreach($brand as $brands) 
+			                       @foreach($brand as $row) 
 			                        <div class="owl-item">
 			                            <div class="brands_item d-flex flex-column justify-content-center">
-			                               <a href="{{route('brandwise.product',$brands->id) }}" title="{{ $brands->brand_name }}"> <img src="{{ asset($brands->brand_logo) }}" alt="{{ $brands->brand_name }}" height="50" width="40"> </a>
+			                               <a href="{{route('brandwise.product',$row->id)}}" title="{{ $row->brand_name }}"> <img src="{{ asset($row->brand_logo) }}" alt="{{ $row->brand_name }}" height="50" width="40"> </a>
 			                            </div>
 			                        </div>
 			                       @endforeach     
@@ -43,10 +43,10 @@
 					<!-- Shop Sidebar -->
 					<div class="shop_sidebar">
 						<div class="sidebar_section">
-							<div class="sidebar_title">Subcategories</div>
+							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
-								@foreach($subcategory as $row)
-								 <li><a href="{{ route('subcategorywise.product',$row->id) }}">{{ $row->subcat_name}}</a></li>
+								@foreach($categories as $row)
+								 <li><a href="{{route('categorywise.product',$row->id)}}">{{ $row->category_name }}</a></li>
 								@endforeach
 							</ul>
 						</div>
@@ -98,23 +98,23 @@
 						<div class="product_grid row">
 							<div class="product_grid_border"></div>
 
-							@foreach($products as $product)
+							@foreach($products as $row)
 								<div class="product_item is_new col-lg-2">
 									<div class="product_border"></div>
-									<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset('public/files/product/'.$product->thumbnail) }}" alt=""></div>
+									<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset('public/files/product/'.$row->thumbnail) }}" alt=""></div>
 									<div class="product_content">
-										@if($product->discount_price==NULL)
-										 <div class="product_price">{{ $setting->currency }}{{ $product->selling_price }}</div>
+										@if($row->discount_price==NULL)
+										 <div class="product_price">{{ $setting->currency }}{{ $row->selling_price }}</div>
 										@else
-										 <div class="product_price">{{ $setting->currency }}{{ $product->discount_price }}<span>{{ $setting->currency }}{{ $product->selling_price }}</span></div>
+										 <div class="product_price">{{ $setting->currency }}{{ $row->discount_price }}<span>{{ $setting->currency }}{{ $row->selling_price }}</span></div>
 										@endif
-										<div class="product_name"><div><a href="{{ route('product_details',$product->slug) }}" tabindex="0">{{ $product->name }}</a></div></div>
+										<div class="product_name"><div><a href="{{ route('product_details',$row->slug) }}" tabindex="0">{{ $row->name }}</a></div></div>
 									</div>
 									<a href="{{ route('add.wishlist',$row->id) }}">
 									  <div class="product_fav"><i class="fas fa-heart"></i></div>
 									</a>
 									<ul class="product_marks">
-										<li class="product_mark product_new quick_view" id="{{ $product->id }}" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-eye"></i></li>
+										<li class="product_mark product_new quick_view" id="{{ $row->id }}" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-eye"></i></li>
 									</ul>
 								</div>
 							@endforeach

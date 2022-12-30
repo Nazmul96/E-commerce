@@ -31,11 +31,11 @@
                                                 $childcat=DB::table('childcategories')->where('subcategory_id',$subcategories->id)->get(); 
                                             @endphp
                                             <li>
-                                                <a href="#">{{$subcategories->subcat_name}}<i class="fas fa-chevron-right"></i></a>
+                                                <a href="{{ route('subcategorywise.product',$subcategories->id) }}">{{$subcategories->subcat_name}}<i class="fas fa-chevron-right"></i></a>
                                                     <ul>
                                                         @foreach ($childcat as $childcategories)
                                                             <li>
-                                                                <a href="#">{{$childcategories->childcategory_name}}<i class="fas fa-chevron-right"></i></a>
+                                                                <a href="{{ route('childcategorywise.product',$childcategories->id) }}">{{$childcategories->childcategory_name}}<i class="fas fa-chevron-right"></i></a>
                                                             </li>
                                                         @endforeach    
                                                     </ul>
