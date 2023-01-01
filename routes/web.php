@@ -42,6 +42,12 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     //review for product----------
     Route::post('/store/review','ReviewController@store')->name('store.review');
 
+    //page view
+    Route::get('/page/{page_slug}','IndexController@ViewPage')->name('view.page');
+
+    //newsletter
+    Route::post('/store/newsletter','IndexController@storeNewsletter')->name('store.newsletter');
+
     //this review for website not product-------------
     Route::get('/write/review','ReviewController@write')->name('write.review');
     Route::post('/store/website/review','ReviewController@StoreWebsiteReview')->name('store.website.review');
