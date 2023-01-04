@@ -37,7 +37,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     Route::get('/cartproduct/updateqty/{rowId}/{qty}','CartController@UpdateQty');
     Route::get('/cartproduct/updatecolor/{rowId}/{color}','CartController@UpdateColor');
     Route::get('/cartproduct/updatesize/{rowId}/{size}','CartController@UpdateSize');
-
+    Route::get('/checkout','CheckoutController@Checkout')->name('checkout');
 
     //review for product----------
     Route::post('/store/review','ReviewController@store')->name('store.review');
