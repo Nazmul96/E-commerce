@@ -8,6 +8,9 @@ use Auth;
 use Cart;
 use DB;
 use Illuminate\Support\Facades\Session;
+use Mail;
+use App\Mail\InvoiceMail;
+
 
 class CheckoutController extends Controller
 {
@@ -99,7 +102,7 @@ class CheckoutController extends Controller
             $order_id=DB::table('orders')->insertGetId($order);
 
             //dd($order);
-           // Mail::to($request->c_email)->send(new InvoiceMail($order));
+            Mail::to($request->c_email)->send(new InvoiceMail($order));
 
             //order details
             $content=Cart::content();
