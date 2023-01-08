@@ -13,7 +13,7 @@
 					<div class="cart_container card p-1">
 						<div class="cart_title text-center">Billing Address</div>
 						
-						  <form action="" method="post" id="order-place">
+						  <form action="{{ route('order.place') }}" method="post" id="order-place">
 						  	@csrf
 							<div class="row p-4">
 							  <div class="form-group col-lg-6">
@@ -77,13 +77,14 @@
 						
 					</div>
 				</div>
+
 				<div class="col-lg-4" >
 					<div class="card">
 						<div class="pl-4 pt-2">
 							<p style="color: black;">Subtotal: <span style="float: right; padding-right: 5px;">{{ Cart::subtotal() }} {{ $setting->currency }}</span> </p>
 							{{-- coupon apply --}}
 							@if(Session::has('coupon'))
-							<p style="color: black;">coupon:({{ Session::get('coupon')['name'] }}) <a href="{{ route('coupon.remove') }}" class="text-danger">X</a> <span style="float: right; padding-right: 5px;">{{ Session::get('coupon')['discount'] }} {{ $setting->currency }}</span>  </p>
+							<p style="color: black;">coupon:({{ Session::get('coupon')['name'] }}) <a href="{{route('coupon.remove')}}" class="text-danger">X</a> <span style="float: right; padding-right: 5px;">{{ Session::get('coupon')['discount'] }} {{ $setting->currency }}</span>  </p>
 							@else
 							@endif
 
@@ -98,7 +99,7 @@
 						</div><hr>
 
 						@if(!Session::has('coupon'))
-						<form action="" method="post">
+						<form action="{{route('apply.coupon')}}" method="post">
 							@csrf
 							<div class="p-4">
 							  <div class="form-group">

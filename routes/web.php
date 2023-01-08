@@ -38,7 +38,10 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     Route::get('/cartproduct/updatecolor/{rowId}/{color}','CartController@UpdateColor');
     Route::get('/cartproduct/updatesize/{rowId}/{size}','CartController@UpdateSize');
     Route::get('/checkout','CheckoutController@Checkout')->name('checkout');
-
+    Route::post('/apply/coupon','CheckoutController@ApplyCoupon')->name('apply.coupon');
+    Route::get('/remove/coupon','CheckoutController@RemoveCoupon')->name('coupon.remove');
+    Route::post('/order/place','CheckoutController@OrderPlace')->name('order.place');
+    
     //review for product----------
     Route::post('/store/review','ReviewController@store')->name('store.review');
 
