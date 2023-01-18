@@ -64,10 +64,9 @@ class CheckoutController extends Controller
       }
 
 
-       //__orderplace__
+    //__orderplace_
     public function OrderPlace(Request $request)
     {
-
 
             $order=array();
             $order['user_id']=Auth::id();
@@ -79,15 +78,18 @@ class CheckoutController extends Controller
             $order['c_zipcode']=$request->c_zipcode;
             $order['c_extra_phone']=$request->c_extra_phone;
             $order['c_city']=$request->c_city;
+            
             if(Session::has('coupon')){
                 $order['subtotal']=Cart::subtotal();
                 $order['coupon_code']=Session::get('coupon')['name'];
                 $order['coupon_discount']=Session::get('coupon')['discount'];
                 $order['after_discount']=Session::get('coupon')['after_discount'];
-            }else{
-                $order['subtotal']=Cart::subtotal();
-                
             }
+            else
+            {
+                $order['subtotal']=Cart::subtotal();     
+            }
+
             $order['total']=Cart::total();
             $order['payment_type']=$request->payment_type;
             $order['tax']=0;
@@ -126,9 +128,6 @@ class CheckoutController extends Controller
             }
             $notification=array('messege' => 'Successfullt Order Placed!', 'alert-type' => 'success');
             return redirect()->to('/')->with($notification);
-
-        
-   
     }
 
 }

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Fornt;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use DB;
 use App\Models\User;
-use Hash;
 use Image;
 
 class ProfileController extends Controller
@@ -45,5 +45,60 @@ class ProfileController extends Controller
             $notification=array('messege' => 'Old Password Not Matched!', 'alert-type' => 'error');
             return redirect()->back()->with($notification);
         }
+    }
+
+    public function MyOrder()
+    {
+       $orders=DB::table('orders')->where('user_id',Auth::id())->orderBy('id','DESC')->get();
+       return view('user.my_order',compact('orders'));
+    }
+
+    //ticekt
+    public function ticket()
+    {
+        $ticket=DB::table('tickets')->where('user_id',Auth::id())->orderBy('id','DESC')->take(10)->get();
+        return view('user.ticket',compact('ticket'));
+    }
+
+     //new ticket
+     public function NewTicket()
+     {
+        return view('user.new_ticket');
+     }
+
+         //store ticket
+    public function StoreTicket(Request $request)
+    {
+        $validated = $request->validate([
+           'subject' => 'required',
+        ]);
+
+        $data=array();
+        $data['subject']=$request->subject;
+        $data['service']=$request->service;
+        $data['priority']=$request->priority;
+        $data['message']=$request->message;
+        $data['user_id']=Auth::id();
+        $data['status']=0;
+        $data['date']=date('Y-m-d');
+
+         if ($request->image) {
+              //working with image
+                  $photo=$request->image;
+                  $photoname=uniqid().'.'.$photo->getClientOriginalExtension();
+                  Image::make($photo)->resize(600,350)->save('public/files/ticket/'.$photoname);  //image intervention
+                  $data['image']='public/files/ticket/'.$photoname;   // public/files/brand/plus-point.jpg
+         }
+        
+        DB::table('tickets')->insert($data);
+        $notification=array('messege' => 'Ticket Inserted!', 'alert-type' => 'success');
+        return redirect()->route('open.ticket')->with($notification);
+    }
+
+    //__ticket show
+    public function ticketShow($id)
+    {
+        $ticket=DB::table('tickets')->where('id',$id)->first();
+        return view('user.show_ticket',compact('ticket'));
     }
 }

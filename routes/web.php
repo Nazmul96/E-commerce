@@ -41,7 +41,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     Route::post('/apply/coupon','CheckoutController@ApplyCoupon')->name('apply.coupon');
     Route::get('/remove/coupon','CheckoutController@RemoveCoupon')->name('coupon.remove');
     Route::post('/order/place','CheckoutController@OrderPlace')->name('order.place');
-    
+
     //review for product----------
     Route::post('/store/review','ReviewController@store')->name('store.review');
 
@@ -68,8 +68,18 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     Route::get('/brandwise/product/{id}','IndexController@BrandWiseProduct')->name('brandwise.product');
 
 
-    //setting profile
+    //setting profile-------
     Route::get('/home/setting','ProfileController@setting')->name('customer.setting'); 
     Route::post('/home/password/update','ProfileController@passwordChange')->name('customer.password.change'); 
+
+    //User My Order-------- 
+    Route::get('/my/order','ProfileController@MyOrder')->name('my.order'); 
+
+    //support ticket
+    Route::get('/open/ticket','ProfileController@ticket')->name('open.ticket');
+    Route::get('/new/ticket','ProfileController@NewTicket')->name('new.ticket');
+    Route::post('/store/ticket','ProfileController@StoreTicket')->name('store.ticket');
+    Route::get('/show/ticket/{id}','ProfileController@ticketShow')->name('show.ticket');
+    Route::post('/reply/ticket','ProfileController@ReplyTicket')->name('reply.ticket');
     
 });   

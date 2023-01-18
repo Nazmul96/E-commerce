@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
@@ -20,7 +21,7 @@
                              <div class="card" >
                                <div class="card-body">
                                  <h5 class="card-title text-success text-center">Total Order</h5>
-                                 <h6 class="card-subtitle mb-2 text-muted text-center">{{ 0 }}</h6>
+                                 <h6 class="card-subtitle mb-2 text-muted text-center">{{$data['total_order']}}</h6>
                                </div>
                              </div>
                            </a>
@@ -30,7 +31,7 @@
                              <div class="card" >
                                <div class="card-body">
                                  <h5 class="card-title text-success text-center">Complete Order</h5>
-                                 <h6 class="card-subtitle mb-2 text-muted text-center">{{ 0 }}</h6>
+                                 <h6 class="card-subtitle mb-2 text-muted text-center">{{$data['complete_order']}}</h6>
                                </div>
                              </div>
                            </a>
@@ -40,7 +41,7 @@
                              <div class="card" >
                                <div class="card-body">
                                  <h5 class="card-title text-danger text-center">Cancel Order</h5>
-                                 <h6 class="card-subtitle mb-2 text-muted text-center">{{ 0 }}</h6>
+                                 <h6 class="card-subtitle mb-2 text-muted text-center">{{$data['cancel_order']}}</h6>
                                </div>
                              </div>
                            </a>
@@ -50,7 +51,7 @@
                             <div class="card" >
                               <div class="card-body">
                                 <h5 class="card-title text-warning text-center">Return Order</h5>
-                                <h6 class="card-subtitle mb-2 text-muted text-center">{{ 0 }}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">{{$data['return_order']}}</h6>
                               </div>
                             </div>
                           </a>
@@ -69,7 +70,29 @@
                            </tr>
                          </thead>
                          <tbody>
-                         
+                            @foreach($data['orders'] as $row)
+                            <tr>
+                              <th scope="row">{{ $row->order_id }}</th>
+                              <td>{{ date('d F , Y') ,strtotime($row->order_id)  }}</td>
+                              <td>{{ $row->total }} {{ $setting->currency }}</td>
+                              <td>{{ $row->payment_type }}</td>
+                              <td>
+                              @if($row->status==0)
+                                  <span class="badge badge-danger">Order Pending</span>
+                              @elseif($row->status==1)
+                                  <span class="badge badge-info">Order Recieved</span>
+                              @elseif($row->status==2)
+                                  <span class="badge badge-primary">Order Shipped</span>
+                              @elseif($row->status==3)
+                                  <span class="badge badge-success">Order Done</span> 
+                              @elseif($row->status==4)
+                                  <span class="badge badge-warning">Order Return</span>   
+                              @elseif($row->status==5)  
+                                  <span class="badge badge-danger">Order Cancel</span>
+                              @endif          
+                            </td>
+                            </tr>
+                            @endforeach
                          </tbody>
                        </table>
                    </div>
