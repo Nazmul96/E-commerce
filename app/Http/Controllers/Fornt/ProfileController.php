@@ -101,4 +101,32 @@ class ProfileController extends Controller
         $ticket=DB::table('tickets')->where('id',$id)->first();
         return view('user.show_ticket',compact('ticket'));
     }
+
+    public function ReplyTicket(Request $request)
+    {
+        $validated = $request->validate([
+           'message' => 'required',
+        ]);
+
+        $data=array();
+        $data['message']=$request->message;
+        $data['ticket_id']=$request->ticket_id;
+        $data['user_id']=Auth::id();
+        $data['reply_date']=date('Y-m-d');
+
+         if ($request->image) {
+              //working with image
+                  $photo=$request->image;
+                  $photoname=uniqid().'.'.$photo->getClientOriginalExtension();
+                  Image::make($photo)->resize(600,350)->save('public/files/ticket/'.$photoname);  //image intervention
+                  $data['image']='public/files/ticket/'.$photoname;   // public/files/brand/plus-point.jpg
+         }
+        
+        DB::table('replies')->insert($data);
+
+        DB::table('tickets')->where('id',$request->ticket_id)->update(['status'=>0]);
+
+        $notification=array('messege' => 'Replied Done!', 'alert-type' => 'success');
+        return redirect()->back()->with($notification);
+    }
 }

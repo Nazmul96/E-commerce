@@ -138,5 +138,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::post('/update/{id}','PickupController@update')->name('pickup_point_update');
 	});
 
+    //Ticket 
+    Route::group(['prefix'=>'ticket'], function(){
+        Route::get('/','TicketController@index')->name('ticket.index');
+        Route::get('/ticket/show/{id}','TicketController@show')->name('admin.ticket.show');
+        Route::post('/ticket/reply','TicketController@ReplyTicket')->name('admin.store.reply');
+        Route::get('/ticket/close/{id}','TicketController@CloseTicket')->name('admin.close.ticket');
+        Route::delete('/ticket/delete/{id}','TicketController@destroy')->name('admin.ticket.delete');
+        
+    });
 
 });

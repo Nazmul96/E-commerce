@@ -9,27 +9,45 @@
         	<div class="card  p-2">
         	  <div class="row">	
         		<h3 class="ml-4">Your Ticket Details</h3>
-        		<div class="col-md-9">
-        			<strong>Subject: {{  $ticket->subject }}</strong><br>
-        			<strong>Service: {{  $ticket->service }}</strong><br>
-        			<strong>Priority: {{  $ticket->priority }}</strong><br>
-        			<strong>Message: {{  $ticket->message }}</strong>
-        		</div>
-        		<div class="col-md-3">
-        		 <a href="{{ asset($ticket->image) }}" target="_blank"><img src="{{ asset($ticket->image) }}" style="height:80px; width:120px;"></a>
-        		</div>
+				@if(isset($ticket))
+					<div class="col-md-9">
+						<strong>Subject: {{  $ticket->subject }}</strong><br>
+						<strong>Service: {{  $ticket->service }}</strong><br>
+						<strong>Priority: {{  $ticket->priority }}</strong><br>
+						<strong>Message: {{  $ticket->message }}</strong>
+					</div>
+					<div class="col-md-3">
+					<a href="{{ asset($ticket->image) }}" target="_blank"><img src="{{ asset($ticket->image) }}" style="height:80px; width:120px;"></a>
+					</div>
+				@endif	
         		</div>
         	</div>
 
         	{{-- All reply message show here --}}
         	@php 
-        		$replies=DB::table('replies')->where('ticket_id',$ticket->id)->orderBy('id','DESC')->get();
+        		if(isset($ticket)){
+					$replies=DB::table('replies')->where('ticket_id',$ticket->id)->orderBy('id','asc')->get();
+				}
         	@endphp
 
         	<div class="card p-2 mt-2">
         		<strong>All Reply Message.</strong><br>
         		<div class="card-body" style="height: 450px; overflow-y: scroll;">
-        			
+				@isset($replies)	
+					@foreach($replies as $row)
+					 <div class="card mt-1 @if($row->user_id==1) ml-4 @endif">
+					   <div class="card-header @if($row->user_id==1) bg-info @else bg-danger @endif ">
+						<i class="fa fa-user"></i> @if($row->user_id==1) Admin @else {{ Auth::user()->name }}@endif
+					   </div>
+					   <div class="card-body">
+						 <blockquote class="blockquote mb-0">
+						   <p>{{ $row->message }}</p>
+						   <footer class="blockquote-footer">{{ date('d F Y'),strtotime($row->reply_date) }}</footer>
+						 </blockquote>
+					   </div>
+					 </div>
+				   @endforeach	
+				 @endisset
         		</div>
         	</div>
 
