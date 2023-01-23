@@ -74,6 +74,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
 
     //User My Order-------- 
     Route::get('/my/order','ProfileController@MyOrder')->name('my.order'); 
+    Route::get('/view/order/{id}','ProfileController@ViewOrder')->name('view.order'); 
 
     //support ticket
     Route::get('/open/ticket','ProfileController@ticket')->name('open.ticket');
@@ -81,5 +82,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     Route::post('/store/ticket','ProfileController@StoreTicket')->name('store.ticket');
     Route::get('/show/ticket/{id}','ProfileController@ticketShow')->name('show.ticket');
     Route::post('/reply/ticket','ProfileController@ReplyTicket')->name('reply.ticket');
+
+     //order tracking
+     Route::get('/order/tracking','IndexController@OrderTracking')->name('order.tracking');
+     Route::post('/check/order','IndexController@CheckOrder')->name('check.order');
     
 });   

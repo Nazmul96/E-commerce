@@ -113,7 +113,25 @@ class IndexController extends Controller
                 DB::table('newsletters')->insert($data);
                 return response()->json('Thanks for subscribe us!');  
         }
-        
+    }
 
+    //__order tracking page
+    public function OrderTracking()
+    {
+        return view('frontend.order.order_tracking');
+    }
+
+    //__check orer
+    public function CheckOrder(Request $request)
+    {
+        $check=DB::table('orders')->where('order_id',$request->order_id)->first();
+        if ($check) {
+            $order=DB::table('orders')->where('order_id',$request->order_id)->first();
+            $order_details=DB::table('order_details')->where('order_id',$order->id)->get();
+            return view('frontend.order.order_details',compact('order','order_details'));
+        }else{
+            $notification=array('messege' => 'Invalid OrderID! Try again.', 'alert-type' => 'error');
+            return redirect()->back()->with($notification);
+        }
     }
 }
