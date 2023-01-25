@@ -93,11 +93,19 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
             Route::get('/','SettingController@smtp')->name('smtp_setting');
             Route::post('update/{id}','SettingController@smtpupdate')->name('smtp_setting_update');
         });
+
         //website settng......
         Route::group(['prefix'=>'website'], function(){
             Route::get('/','SettingController@website_setting')->name('website_setting');
             Route::post('/update/{id}','SettingController@website_setting_update')->name('website_setting_update');
         });
+
+        //payment-gateway setting
+		Route::group(['prefix'=>'payment-gateway'], function(){
+			Route::get('/','SettingController@PaymentGateway')->name('payment.gateway');
+			Route::post('/update-aamarpay','SettingController@AamarpayUpdate')->name('update.aamarpay');
+			Route::post('/update-surjopay','SettingController@SurjopayUpdate')->name('update.surjopay');
+	    });
 
         //page setting.......
         Route::group(['prefix'=>'page'], function(){
