@@ -37,8 +37,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('public/frontend')}}/images/phone.png" alt=""></div>+01963555693</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('public/frontend')}}/images/mail.png" alt=""></div><a href="mailto:hossainnazmul191@gmail.com">hossainnazmul191@gmail.com</a></div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('public/frontend')}}/images/phone.png" alt=""></div>{{ $setting->phone_one }}</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('public/frontend')}}/images/mail.png" alt=""></div><a href="mailto:{{ $setting->main_email }}">{{ $setting->main_email }}</a></div>
 						<div class="top_bar_content ml-auto">
 							@if(Auth::check())
 								<div class="top_bar_menu">
@@ -196,13 +196,12 @@
 				<div class="col-lg-3 footer_col">
 					<div class="footer_column footer_contact">
 						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
+							<img src="{{ asset( $setting->logo ) }}" height="80px;">
 						</div>
 						<div class="footer_title">Got Question? Call Us 24/7</div>
-						<div class="footer_phone">+38 068 005 3570</div>
+						<div class="footer_phone">{{ $setting->phone_two }}</div>
 						<div class="footer_contact_text">
-							<p>17 Princess Road, London</p>
-							<p>Grester London NW18JR, UK</p>
+							<p>{{ $setting->address }}</p>
 						</div>
 						<div class="footer_social">
 							<ul>
@@ -266,9 +265,9 @@
 					
 					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
 						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</div>
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
 						<div class="logos ml-sm-auto">
 							<ul class="logos_list">
 								<li><a href="#"><img src="{{asset('public/frontend')}}/images/logos_1.png" alt=""></a></li>

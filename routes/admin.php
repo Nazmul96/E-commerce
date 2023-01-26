@@ -128,15 +128,24 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::post('/update/{id}','CouponController@update')->name('coupon_update');
 	});
 
-      //Campaign.....................
-      Route::group(['prefix'=>'campaign'], function(){
-		Route::get('/','CampignController@index')->name('campaign.index');
-		Route::post('/store','CampignController@store')->name('campaign.store');
-        Route::get('/delete/{id}','CampignController@delete')->name('campaign.delete');
-        Route::get('/edit/{id}','CampignController@edit');
-        Route::post('/update','CampignController@update')->name('campaign.update');
-	});
+    //Campaign.....................
+    Route::group(['prefix'=>'campaign'], function(){
+    Route::get('/','CampignController@index')->name('campaign.index');
+    Route::post('/store','CampignController@store')->name('campaign.store');
+    Route::get('/delete/{id}','CampignController@delete')->name('campaign.delete');
+    Route::get('/edit/{id}','CampignController@edit');
+    Route::post('/update','CampignController@update')->name('campaign.update');
+   });
 
+    //__order 
+    Route::group(['prefix'=>'order'], function(){
+        Route::get('/','OrderController@index')->name('admin.order.index');
+        Route::get('/admin/edit/{id}','OrderController@Editorder');
+        Route::post('/update/order/status','OrderController@updateStatus')->name('update.order.status');
+        Route::get('/admin/view/{id}','OrderController@ViewOrder');
+        Route::get('/delete/{id}','OrderController@delete')->name('order.delete');
+            
+    });
     //pickup point....
     Route::group(['prefix'=>'pickup-point'], function(){
 		Route::get('/','PickupController@index')->name('pickup_point_index');

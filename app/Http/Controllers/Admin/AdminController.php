@@ -15,8 +15,6 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
     
-    
-
     //Admin After login.....
 
      public function admin()
