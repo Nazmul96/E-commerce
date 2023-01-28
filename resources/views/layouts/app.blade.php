@@ -91,7 +91,9 @@
 												<button type="submit" class="btn btn-sm btn-info">login</button>
 											</div>
 										</form>
-												   
+										 <div class="form-group">
+											<a href="{{ route('social.oauth', 'google') }}" class="btn btn-danger btn-sm btn-block text-white">Login WIth Google</a>
+										   </div>	   
 											</div>
 										  </ul>
 										</li>

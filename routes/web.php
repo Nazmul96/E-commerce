@@ -95,3 +95,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
     })->name('cancel');
     
 });   
+
+
+//socialite
+Route::get('oauth/{driver}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('social.oauth');
+Route::get('oauth/{driver}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('social.callback');
