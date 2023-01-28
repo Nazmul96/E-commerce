@@ -157,12 +157,20 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 
     //Ticket 
     Route::group(['prefix'=>'ticket'], function(){
-        Route::get('/','TicketController@index')->name('ticket.index');
-        Route::get('/ticket/show/{id}','TicketController@show')->name('admin.ticket.show');
-        Route::post('/ticket/reply','TicketController@ReplyTicket')->name('admin.store.reply');
-        Route::get('/ticket/close/{id}','TicketController@CloseTicket')->name('admin.close.ticket');
-        Route::delete('/ticket/delete/{id}','TicketController@destroy')->name('admin.ticket.delete');
-        
+    Route::get('/','TicketController@index')->name('ticket.index');
+    Route::get('/ticket/show/{id}','TicketController@show')->name('admin.ticket.show');
+    Route::post('/ticket/reply','TicketController@ReplyTicket')->name('admin.store.reply');
+    Route::get('/ticket/close/{id}','TicketController@CloseTicket')->name('admin.close.ticket');
+    Route::delete('/ticket/delete/{id}','TicketController@destroy')->name('admin.ticket.delete');
+    });
+
+    //Blog category
+    Route::group(['prefix'=>'blog-category'], function(){
+    Route::get('/','BlogController@index')->name('admin.blog.category');
+    Route::post('/store','BlogController@store')->name('blog.category.store');
+    Route::get('/delete/{id}','BlogController@destroy')->name('blog.category.delete');
+    Route::get('/edit/{id}','BlogController@edit');
+    Route::post('/update','BlogController@update')->name('blog.category.update');
     });
 
 });
