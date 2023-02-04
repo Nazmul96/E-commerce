@@ -94,6 +94,11 @@ Route::group(['namespace'=>'App\Http\Controllers\Fornt'],function(){
         return redirect()->to('/');
     })->name('cancel');
     
+    //Contact--------------
+    Route::get('/contact-us','IndexController@contact')->name('contact');
+
+    //Blogs----------------
+    Route::get('/our-blog','IndexController@blog')->name('blog');
 });   
 
 

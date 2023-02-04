@@ -31,7 +31,6 @@ class BlogController extends Controller
         $validated = $request->validate([
            'category_name' => 'required|max:55',
        ]);
-
         //query builder
         $data=array();
         $data['category_name']=$request->category_name;

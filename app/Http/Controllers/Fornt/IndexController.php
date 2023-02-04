@@ -136,4 +136,17 @@ class IndexController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+
+     //constact page
+     public function Contact()
+     {
+         return view('frontend.contact');
+     }
+ 
+    //__blog page
+    public function Blog()
+    {
+        return view('frontend.blog');
+    }
+
 }

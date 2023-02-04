@@ -173,4 +173,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
     Route::post('/update','BlogController@update')->name('blog.category.update');
     });
 
+    //__report routes__//
+    Route::group(['prefix'=>'report'], function(){
+        Route::get('/order','ReportController@ReportOrderindex')->name('report.order.index');
+        Route::get('/order/print','ReportController@ReportOrderPrint')->name('report.order.print');
+    });
 });

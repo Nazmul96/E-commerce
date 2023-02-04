@@ -117,6 +117,9 @@
 <!-- Summernote -->
 <script src="{{asset('public/backend/plugins/summernote/summernote-bs4.min.js')}}"></script>
 
+<!-- For Report Print -->
+<script src="{{ asset('public') }}/backend/plugins/print_this/printThis.js"></script> 
+
 <!-- Page specific script -->
 <script>
   $(function () {

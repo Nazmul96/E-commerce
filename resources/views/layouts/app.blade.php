@@ -245,11 +245,10 @@
 						<ul class="footer_list">
 							<li><a href="{{ route('home') }}">My Account</a></li>
                             <li><a href="{{ route('order.tracking') }}">Order Tracking</a></li>
-							<li><a href="#">Wish List</a></li>
-							<li><a href="#">Customer Services</a></li>
-							<li><a href="#">Returns / Exchange</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="#">Product Support</a></li>
+                            <li><a href="{{ route('wishlist') }}">Wish List</a></li>
+                            <li><a href="{{ route('blog') }}">Our Blog</a></li>
+                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                            <li><a href="#">Become a vendor</a></li>
 						</ul>
 					</div>
 				</div>
