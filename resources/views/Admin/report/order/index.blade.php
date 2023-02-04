@@ -128,6 +128,7 @@ $('.print').on('click', function (e) {
         data: {status : $('#status').val(), date: $('#date').val() , payment_type: $('#payment_type').val()},
         success:function(data){
             $('.loader').addClass('d-none');
+            alert(data);
             $(data).printThis({
                 debug: false,                   
                 importCSS: true,                

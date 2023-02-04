@@ -69,8 +69,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 		Route::get('/create','ProductController@create')->name('product_create');
 		Route::post('/store','ProductController@store')->name('product_store');
 		Route::get('/delete/{id}','ProductController@product_delete')->name('product_delete');
-		//Route::get('/edit/{id}','BrandController@edit');
-		//Route::post('/update/{id}','BrandController@update')->name('brand_update');
+		Route::get('/edit/{id}','ProductController@edit')->name('product.edit');
+		Route::post('/update','ProductController@update')->name('product.update');
+        
         Route::get('/featured-active/{id}','ProductController@featured_active');
         Route::get('/featured-deactive/{id}','ProductController@featured_deactive');
         Route::get('/todaydeal-active/{id}','ProductController@todaydeal_active');

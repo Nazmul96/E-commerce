@@ -117,4 +117,6 @@ class ReportController extends Controller
 
         return view('admin.report.order.print',compact('order'));
     }
+
+    
 }
