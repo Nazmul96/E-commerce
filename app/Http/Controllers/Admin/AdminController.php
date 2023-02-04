@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 use Hash;
+use DB;
 
 class AdminController extends Controller
 {
@@ -19,7 +20,24 @@ class AdminController extends Controller
 
      public function admin()
      {
-         return view('admin.home');
+         
+        $data['customers']=DB::table('users')->where('is_admin','0')->orWhere('is_admin',NULL)->orderBy('id','DESC')->limit(8)->get();
+        $data['latest_order']=DB::table('orders')->orderBy('id','DESC')->limit(8)->get();
+        $data['most_views']=DB::table('products')->orderBy('product_views','DESC')->where('status',1)->limit(8)->get();
+        $data['product']=DB::table('products')->count();
+        $data['active_product']=DB::table('products')->where('status',1)->count();
+        $data['inactive_product']=DB::table('products')->where('status',0)->count();
+        $data['allcustomers']=DB::table('users')->where('is_admin','0')->orWhere('is_admin',NULL)->count();
+        $data['category']=DB::table('categories')->count();
+        $data['brands']=DB::table('brands')->count();
+        $data['tickets']=DB::table('tickets')->where('status',0)->count();
+        $data['reviews']=DB::table('reviews')->count();
+        $data['coupon']=DB::table('coupons')->count();
+        $data['subscribers']=DB::table('newsletters')->count();
+        $data['pending_order']=DB::table('orders')->where('status',0)->count();
+        $data['success_order']=DB::table('orders')->where('status',3)->count();
+ 
+         return view('admin.home',compact('data'));
      } 
     
     // admin custome Logout....
