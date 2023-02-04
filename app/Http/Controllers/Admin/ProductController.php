@@ -199,12 +199,23 @@ class ProductController extends Controller
     //Product delete------------
     public function product_delete($id)
     {
+        $product=DB::table('products')->where('id',$id)->first();  //product data get
+        if (File::exists('public/files/product/'.$product->thumbnail)) {
+              FIle::delete('public/files/product/'.$product->thumbnail);
+        }
+
+        $images=json_decode($product->images,true);
+        if (isset($images)) {
+             foreach($images as $key => $image){
+                if (File::exists('public/files/product/'.$image)) {
+                    FIle::delete('public/files/product/'.$image);
+                }
+             }
+        }
+
         DB::table('products')->where('id',$id)->delete();
-        $notification=array(
-            'message'=>'Product Deleted!',
-            'alert-type'=>'success',
-           );
-        return redirect()->back()->with($notification);  
+       $notification=array('messege' => 'Product Deleted!', 'alert-type' => 'success');
+       return redirect()->back()->with($notification);
     }
 
     //Featured Deactive........
