@@ -64,7 +64,6 @@ class CartController extends Controller
 
     public function AddToCartQV(Request $request)
     {
-
         $product=Product::find($request->id);
 
         Cart::add([

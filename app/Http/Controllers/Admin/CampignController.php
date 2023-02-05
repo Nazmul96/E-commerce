@@ -42,8 +42,10 @@ class CampignController extends Controller
                     })
     				->addColumn('action', function($row){
     					$actionbtn='<a href="#" class="btn btn-info btn-sm edit" data-id="'.$row->id.'" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
-                      	<a href="'.route('campaign.delete',[$row->id]).'" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i>
-                      	</a>';
+                        <a href="'.route('campaign.delete',[$row->id]).'" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i>
+                        </a>
+                        <a href="'.route('campaign.product',[$row->id]).'" class="btn btn-success btn-sm"><i class="fas fa-plus"></i>
+                        </a>';
                        return $actionbtn; 	
 
     				})
