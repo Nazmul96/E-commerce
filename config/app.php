@@ -169,6 +169,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -232,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ],
 
 ];

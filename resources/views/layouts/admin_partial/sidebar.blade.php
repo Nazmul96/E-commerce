@@ -37,7 +37,7 @@
             </a>
             
           </li>
-         
+        @if(Auth::user()->category==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -80,6 +80,9 @@
               </li>
             </ul>           
           </li>
+        @endif 
+
+        @if(Auth::user()->product==1) 
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -105,7 +108,9 @@
               
             </ul>           
           </li>
+        @endif  
 
+        @if(Auth::user()->report==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -147,7 +152,9 @@
               </li> 
             </ul>
           </li>
+        @endif
 
+        @if(Auth::user()->setting==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -190,7 +197,9 @@
               </li>
             </ul>           
           </li>
-          
+        @endif
+        
+        @if(Auth::user()->userrole==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -214,7 +223,9 @@
               </li>
             </ul>
           </li>
+        @endif
 
+        @if(Auth::user()->offer==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -238,7 +249,9 @@
               </li>             
             </ul>           
           </li>
-
+        @endif
+        
+        @if(Auth::user()->orders==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -257,7 +270,9 @@
               </li>
             </ul>
           </li>
-
+        @endif 
+        
+        @if(Auth::user()->blog==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -281,7 +296,9 @@
               </li>
             </ul>
           </li>
+        @endif
 
+        @if(Auth::user()->pickup==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -300,7 +317,9 @@
                       
             </ul>           
           </li>
-         
+        @endif 
+
+        @if(Auth::user()->ticket==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -318,7 +337,8 @@
               </li>   
             </ul>
           </li>
-          
+        @endif 
+
           <li class="nav-header">PROFILE</li>
           <li class="nav-item">
             <a href="{{route('admin_password_change')}}" class="nav-link">
@@ -334,6 +354,7 @@
           </li>
          
         </ul>
+ 
       </nav>
       <!-- /.sidebar-menu -->
     </div>

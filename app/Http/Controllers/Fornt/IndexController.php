@@ -39,7 +39,19 @@ class IndexController extends Controller
         $product=Product::where('slug',$slug)->first(); 
         $related_product=DB::table('products')->where('subcategory_id',$product->subcategory_id)->orderBy('id','DESC')->take(10)->get();
         $review=Review::where('product_id',$product->id)->orderBy('id','DESC')->take(10)->get();
-        return view('frontend.product.product_details',compact('product','related_product','review'));
+
+         // Share button 1
+         $shareButtons1 = \Share::page(
+                url()->current()
+            )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp() 
+            ->reddit();
+      
+        return view('frontend.product.product_details',compact('product','related_product','review','shareButtons1'));
     }
 
     //product quick view

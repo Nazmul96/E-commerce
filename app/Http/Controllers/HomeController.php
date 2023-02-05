@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+       if(!Auth::user()->is_admin==1){
         $data['orders']=DB::table('orders')->where('user_id',Auth::id())->orderBy('id','DESC')->take(10)->get();
         //total order
         $data['total_order']=DB::table('orders')->where('user_id',Auth::id())->count();
@@ -32,8 +33,11 @@ class HomeController extends Controller
         $data['cancel_order']=DB::table('orders')->where('user_id',Auth::id())->where('status',5)->count();
         $data['return_order']=DB::table('orders')->where('user_id',Auth::id())->where('status',4)->count();
 
-
         return view('home',compact('data'));
+        
+        }else{
+            return redirect()->back();
+        }
     }
 
     public function logout()

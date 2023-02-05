@@ -2,7 +2,9 @@
 
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend')}}/styles/product_styles.css">
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend')}}/styles/product_responsive.css">		
+<link rel="stylesheet" type="text/css" href="{{asset('public/frontend')}}/styles/product_responsive.css">	
+<script src="{{ asset('public/js/share.js') }}"></script>
+
 @include('layouts.frontend_partial.collaps_nav')
 <style>
     .checked {
@@ -240,7 +242,7 @@
                                 </div>
                               </div>
                           </div>
-                          
+                          {!! $shareButtons1 !!}
                       </form>
                 </div>
             </div>
